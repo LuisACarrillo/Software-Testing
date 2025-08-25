@@ -15,3 +15,37 @@ If the total amount is less than 100, no discount is applied.
 If the total amount is between 100 and 500 (inclusive), a 10% discount is applied.
 If the total amount is greater than 500, a 20% discount is applied.
 
+calculate_discount(purchase)
+    purchase is not a number
+        return
+    purchase < 0
+        return
+    purchase < 100
+        return 0
+    100 <= purchase <= 500
+        return purchase * 0.1
+    purchase > 500
+        return purchase * 0.2
+
+calculate_discount(50)    
+    output: 0
+calculate_discount(150)
+    output: 15
+calculate_discount(600)
+    output: 120
+calculate_discount(-10)
+    output: None
+calculate_discount("abc") 
+    output: None
+calculate_discount(0.1)
+    output: 0
+calculate_discount(-0.1)
+    output: None
+calculate_discount(1000000000000)
+    output: 800000000000.0
+calculate_discount(-1000000000000)
+    output: None
+calculate_discount(null)
+    output: None
+calculate_discount()
+    output: None
