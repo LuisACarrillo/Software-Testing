@@ -15,6 +15,7 @@ If the total amount is less than 100, no discount is applied.
 If the total amount is between 100 and 500 (inclusive), a 10% discount is applied.
 If the total amount is greater than 500, a 20% discount is applied.
 
+
 calculate_discount(purchase)
     purchase is not a number
         return
@@ -49,3 +50,4 @@ calculate_discount(null)
     output: None
 calculate_discount()
     output: None
+
