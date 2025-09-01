@@ -1,0 +1,27 @@
+{
+  "name": "software-testing",
+  "version": "1.0.0",
+  "description": "Repository to learn about software testing tools",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint hello.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisACarrillo/Software-Testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LuisACarrillo/Software-Testing/issues"
+  },
+  "homepage": "https://github.com/LuisACarrillo/Software-Testing#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "eslint": "^9.34.0",
+    "globals": "^16.3.0"
+  }
+}
