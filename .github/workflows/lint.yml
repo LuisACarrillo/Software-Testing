@@ -3,6 +3,7 @@ name: Lint JS
 on:
   push:
     paths:
+<<<<<<< HEAD
       - "hello.js"
   pull_request:
     paths:
@@ -11,11 +12,22 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+=======
+      - 'hello.js'
+  pull_request:
+    paths:
+      - 'hello.js'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest  
+>>>>>>> e9d35cf (feat: add hello world scripts in Python and JavaScript with linter workflow)
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
+<<<<<<< HEAD
           node-version: "20"
       - name: Clean install dependencies
         run: |
@@ -23,4 +35,8 @@ jobs:
           npm install
       - run: npm install eslint --save-dev
       - run: chmod -R +x node_modules/.bin
+=======
+          node-version: '20'
+      - run: npm install
+>>>>>>> e9d35cf (feat: add hello world scripts in Python and JavaScript with linter workflow)
       - run: npx eslint hello.js
