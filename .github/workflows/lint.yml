@@ -18,4 +18,5 @@ jobs:
         with:
           node-version: '20'
       - run: npm install
+      - run: npm install eslint --save-dev
       - run: npx eslint hello.js
