@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Módulo de prueba que imprime un saludo."""
 
 def main():
