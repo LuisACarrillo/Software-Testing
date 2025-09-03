@@ -3,20 +3,20 @@ name: Lint JS
 on:
   push:
     paths:
-      - 'hello.js'
+      - "hello.js"
   pull_request:
     paths:
-      - 'hello.js'
+      - "hello.js"
 
 jobs:
   lint:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "20"
       - name: Clean install dependencies
         run: |
           rm -rf node_modules package-lock.json

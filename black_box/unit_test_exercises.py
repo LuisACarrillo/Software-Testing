@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 3. Function that calculates the discount for a customer's purchase based on the total amount.
 # The discount rules are as follows:
 
@@ -17,14 +18,15 @@
 # purchase > 500
 #   purchase = purchase * 0.8
 
-# print(calculate_discount(50))    
-# print(calculate_discount(150))  
-# print(calculate_discount(600))  
-# print(calculate_discount(-10))  
-# print(calculate_discount("abc")) 
+# print(calculate_discount(50))
+# print(calculate_discount(150))
+# print(calculate_discount(600))
+# print(calculate_discount(-10))
+# print(calculate_discount("abc"))
 # print(calculate_discount(0.1))
 # print(calculate_discount(1000000000000))
 # print(calculate_discount(-1000000000000))
+
 
 def calculate_discount(purchase):
     if isinstance(purchase, (int, float)) is False:
@@ -35,15 +37,16 @@ def calculate_discount(purchase):
         return purchase
     elif 100 <= purchase <= 500:
         return purchase * 0.9
-    else: 
+    else:
         return purchase * 0.8
-    
+
+
 # Example usage:
-print(calculate_discount(50))    
-print(calculate_discount(150))  
-print(calculate_discount(600))  
-print(calculate_discount(-10))  
-print(calculate_discount("abc")) 
+print(calculate_discount(50))
+print(calculate_discount(150))
+print(calculate_discount(600))
+print(calculate_discount(-10))
+print(calculate_discount("abc"))
 print(calculate_discount(0.1))
 print(calculate_discount(1000000000000))
 print(calculate_discount(-1000000000000))

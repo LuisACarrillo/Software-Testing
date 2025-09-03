@@ -28,7 +28,7 @@ calculate_discount(purchase)
     purchase > 500
         return purchase * 0.2
 
-calculate_discount(50)    
+calculate_discount(50)
     output: 0
 calculate_discount(150)
     output: 15
@@ -36,7 +36,7 @@ calculate_discount(600)
     output: 120
 calculate_discount(-10)
     output: None
-calculate_discount("abc") 
+calculate_discount("abc")
     output: None
 calculate_discount(0.1)
     output: 0
@@ -96,4 +96,3 @@ Ws      es      out
 20.0    true    $40
 20.0    false   $20
 5.01    false   $15
-
