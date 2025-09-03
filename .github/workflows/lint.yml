@@ -1,0 +1,21 @@
+name: Lint JS
+
+on:
+  push:
+    paths:
+      - 'hello.js'
+  pull_request:
+    paths:
+      - 'hello.js'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest  
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx eslint hello.js
