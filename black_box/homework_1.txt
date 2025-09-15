@@ -126,4 +126,3 @@ State Transition
    - The states are "Idle", "Moving Up" and "Moving Down".
    - The elevator can only move up or down if the state is in "Idle" state.
    - The elevator can only stop if the state is either "Moving Down" or "Moving Up"
-
