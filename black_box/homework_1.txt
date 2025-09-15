@@ -9,7 +9,7 @@ Equivalence Partitioning
    4        123456789012345678   Rechazado
    5        1234abcd5678         Rechazado
 
-   
+
 
 2. Function that validates dates.
    - Valid years: Between 1900 and 2100.
@@ -20,7 +20,7 @@ Equivalence Partitioning
    2        6-24-1800            Rechazado
    3        6-24-2200            Rechazado
    4        13-24-2025           Rechazado
-   5        0-24-2025            Rechazado   
+   5        0-24-2025            Rechazado
    6        6-32-2025            Rechazado
    7        6-0-2025             Rechazado
 
@@ -85,7 +85,7 @@ Boundary Value Analysis
             WEIGHT   DIMENSIONS(l, w, h)
    1        1        10x10x10                $5
    2        1.1      30x30x30                $10
-   3        5        11x11x11                $10 
+   3        5        11x11x11                $10
    4        5.1      10x10x10                $20
    5        1        31x10x10                $20
 
@@ -126,4 +126,4 @@ State Transition
    - The states are "Idle", "Moving Up" and "Moving Down".
    - The elevator can only move up or down if the state is in "Idle" state.
    - The elevator can only stop if the state is either "Moving Down" or "Moving Up"
-   
+
