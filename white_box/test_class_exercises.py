@@ -7,13 +7,13 @@ import unittest
 
 from white_box.class_exercises import (
     VendingMachine,
+    calculate_total_discount,
+    check_number_status,
     divide,
     get_grade,
     is_even,
     is_triangle,
-    check_number_status,
     validate_password,
-    calculate_total_discount,
 )
 
 
@@ -134,6 +134,7 @@ class TestWhiteBoxVendingMachine(unittest.TestCase):
 
         self.assertEqual(self.vending_machine.state, "Dispensing")
         self.assertEqual(output, "Coin Inserted. Select your drink.")
+
 
 class TestWhiteBoxCheckNumberStatus(unittest.TestCase):
     """
