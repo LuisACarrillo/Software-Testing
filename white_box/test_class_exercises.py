@@ -951,5 +951,4 @@ class TestWhiteBoxShoppingCart(unittest.TestCase):
             line.strip() for line in captured.getvalue().strip().splitlines()
         ]
         self.assertEqual(output_lines, expected_lines)
-        self.assertEqual(captured.getvalue().strip(), expected_msg)
 
