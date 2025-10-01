@@ -247,6 +247,7 @@ class TestWhiteBoxCalculateOrderTotal(unittest.TestCase):
     # --- Test Cases for 5% Discount (6 <= quantity <= 10) ---
 
     def test_quantity_minimum_5_percent_discount(self):
+        """Checks quantity 6 (lower bound for 5% discount)."""
         items = [{"quantity": 6, "price": 100}]
         self.assertAlmostEqual(calculate_order_total(items), 570.0)
 
@@ -304,48 +305,82 @@ class TestWhiteBoxCalculateShippingCost(unittest.TestCase):
     """
     White-box tests for calculate_items_shipping_cost.
     """
+
     def test_standard_shipping_light_weight_boundary(self):
+        """
+        Checks the boundary condition for light weight in standard shipping.
+        """
         items = [{"weight": 2}, {"weight": 3}]
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 10)
 
     def test_standard_shipping_light_weight_inside(self):
+        """
+        Checks a light weight item in standard shipping.
+        """
         items = [{"weight": 3}]
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 10)
 
     def test_standard_shipping_medium_weight_lower_boundary(self):
+        """
+        Checks the boundary condition for medium weight in standard shipping.
+        """
         items = [{"weight": 5.1}]
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 15)
 
     def test_standard_shipping_medium_weight_upper_boundary(self):
+        """
+        Checks the upper boundary condition for medium weight in standard shipping.
+        """
         items = [{"weight": 10}]
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 15)
 
     def test_standard_shipping_heavy_weight_boundary(self):
+        """
+        Checks the boundary condition for heavy weight in standard shipping.
+        """
         items = [{"weight": 10.1}]
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 20)
 
     def test_express_shipping_light_weight_boundary(self):
+        """
+        Checks the boundary condition for light weight in express shipping.
+        """
         items = [{"weight": 5}]
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 20)
 
     def test_express_shipping_medium_weight_lower_boundary(self):
+        """
+        Checks the lower boundary condition for medium weight in express shipping.
+        """
         items = [{"weight": 5.01}]
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 30)
 
     def test_express_shipping_medium_weight_upper_boundary(self):
+        """
+        Checks the upper boundary condition for medium weight in express shipping.
+        """
         items = [{"weight": 10}]
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 30)
 
     def test_express_shipping_heavy_weight_boundary(self):
+        """
+        Checks the boundary condition for heavy weight in express shipping.
+        """
         items = [{"weight": 10.01}]
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 40)
 
     def test_invalid_shipping_method(self):
+        """
+        Checks behavior with an invalid shipping method.
+        """
         items = [{"weight": 1}]
         with self.assertRaises(ValueError):
             calculate_items_shipping_cost(items, "priority")
 
     def test_empty_order_weight(self):
+        """
+        Checks behavior with an empty list of items.
+        """
         items = []
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 10)
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 20)
@@ -355,34 +390,65 @@ class TestWhiteBoxValidateLogin(unittest.TestCase):
     """
     White-box tests for validate_login.
     """
+
     def test_successful_login_minimum_boundary(self):
+        """
+        Tests a successful login with minimum boundary values.
+        """
         self.assertEqual(validate_login("user1", "pass1234"), "Login Successful")
 
     def test_successful_login_maximum_boundary(self):
+        """
+        Tests a successful login with maximum boundary values.
+        """
         self.assertEqual(validate_login("a" * 20, "p" * 15), "Login Successful")
 
     def test_successful_login_mid_range(self):
+        """
+        Tests a successful login with mid-range values.
+        """
         self.assertEqual(validate_login("miduser", "midpass12"), "Login Successful")
 
     def test_failed_username_too_short(self):
+        """
+        Tests a failed login due to username being too short.
+        """
         self.assertEqual(validate_login("usr", "pass12345678"), "Login Failed")
 
     def test_failed_username_too_long(self):
+        """
+        Tests a failed login due to username being too long.
+        """
         self.assertEqual(validate_login("a" * 21, "pass12345678"), "Login Failed")
 
     def test_failed_password_too_short(self):
+        """
+        Tests a failed login due to password being too short.
+        """
         self.assertEqual(validate_login("validuser", "pass7"), "Login Failed")
 
     def test_failed_password_too_long(self):
+        """
+        Tests a failed login due to password being too long.
+        """
         self.assertEqual(validate_login("validuser", "p" * 16), "Login Failed")
 
     def test_failed_both_too_short(self):
+        """
+        Tests a failed login due to both username and password being too short.
+        """
         self.assertEqual(validate_login("u", "p"), "Login Failed")
 
     def test_failed_both_too_long(self):
+        """
+        Tests a failed login due to both username and password being too long.
+        """
         self.assertEqual(validate_login("a" * 30, "p" * 30), "Login Failed")
 
     def test_failed_mixed_boundaries(self):
+        """
+        Tests a failed login due to mixed boundary violations.
+        """
         self.assertEqual(validate_login("abcd", "p" * 15), "Login Failed")
         self.assertEqual(validate_login("a" * 20, "p" * 7), "Login Failed")
 
@@ -391,25 +457,47 @@ class TestWhiteBoxVerifyAge(unittest.TestCase):
     """
     White-box tests for verify_age.
     """
+
     def test_eligible_minimum_boundary(self):
+        """
+        Tests the minimum boundary for eligibility.
+        """
         self.assertEqual(verify_age(18), "Eligible")
 
     def test_eligible_maximum_boundary(self):
+        """
+        Tests the maximum boundary for eligibility.
+        """
         self.assertEqual(verify_age(65), "Eligible")
 
     def test_eligible_mid_range(self):
+        """
+        Tests a mid-range eligible age.
+        """
         self.assertEqual(verify_age(30), "Eligible")
 
     def test_not_eligible_below_minimum_boundary(self):
+        """
+        Tests the boundary just below the minimum eligibility age.
+        """
         self.assertEqual(verify_age(17), "Not Eligible")
 
     def test_not_eligible_far_below(self):
+        """
+        Tests a far below minimum eligibility age.
+        """
         self.assertEqual(verify_age(0), "Not Eligible")
 
     def test_not_eligible_above_maximum_boundary(self):
+        """
+        Tests the boundary just above the maximum eligibility age.
+        """
         self.assertEqual(verify_age(66), "Not Eligible")
 
     def test_not_eligible_far_above(self):
+        """
+        Tests a far above maximum eligibility age.
+        """
         self.assertEqual(verify_age(100), "Not Eligible")
 
 
@@ -417,43 +505,83 @@ class TestWhiteBoxCategorizeProduct(unittest.TestCase):
     """
     White-box tests for categorize_product.
     """
+
     def test_category_a_minimum_boundary(self):
+        """
+        Tests the minimum boundary for Category A.
+        """
         self.assertEqual(categorize_product(10), "Category A")
 
     def test_category_a_maximum_boundary(self):
+        """
+        Tests the maximum boundary for Category A.
+        """
         self.assertEqual(categorize_product(50), "Category A")
 
     def test_category_a_mid_range(self):
+        """
+        Tests a mid-range value for Category A.
+        """
         self.assertEqual(categorize_product(30), "Category A")
 
     def test_category_b_minimum_boundary(self):
+        """
+        Tests the minimum boundary for Category B.
+        """
         self.assertEqual(categorize_product(51), "Category B")
 
     def test_category_b_maximum_boundary(self):
+        """
+        Tests the maximum boundary for Category B.
+        """
         self.assertEqual(categorize_product(100), "Category B")
 
     def test_category_b_mid_range(self):
+        """
+        Tests a mid-range value for Category B.
+        """
         self.assertEqual(categorize_product(75), "Category B")
 
     def test_category_c_minimum_boundary(self):
+        """
+        Tests the minimum boundary for Category C.
+        """
         self.assertEqual(categorize_product(101), "Category C")
 
     def test_category_c_maximum_boundary(self):
+        """
+        Tests the maximum boundary for Category C.
+        """
         self.assertEqual(categorize_product(200), "Category C")
 
     def test_category_c_mid_range(self):
+        """
+        Tests a mid-range value for Category C.
+        """
         self.assertEqual(categorize_product(150), "Category C")
 
     def test_category_d_below_range(self):
+        """
+        Tests a value below the defined categories.
+        """
         self.assertEqual(categorize_product(9), "Category D")
 
     def test_category_d_negative_price(self):
+        """
+        Tests a negative price value.
+        """
         self.assertEqual(categorize_product(-5), "Category D")
 
     def test_category_d_above_range(self):
+        """
+        Tests a value above the defined categories.
+        """
         self.assertEqual(categorize_product(201), "Category D")
 
     def test_category_d_high_price(self):
+        """
+        Tests a high price value.
+        """
         self.assertEqual(categorize_product(1000), "Category D")
 
 
@@ -461,38 +589,69 @@ class TestWhiteBoxValidateEmail(unittest.TestCase):
     """
     White-box tests for validate_email.
     """
+
     def test_valid_email_minimum_boundary(self):
+        """
+        Tests a valid email with minimum boundary values.
+        """
         self.assertEqual(validate_email("a@b.cd"), "Valid Email")
 
     def test_valid_email_maximum_boundary(self):
+        """
+        Tests a valid email with maximum boundary values.
+        """
         self.assertEqual(
             validate_email("a" * 24 + "@" + "b" * 23 + ".c"), "Valid Email"
         )
 
     def test_valid_email_mid_range(self):
+        """
+        Tests a valid email with mid-range values.
+        """
         self.assertEqual(validate_email("test.user@domain.com"), "Valid Email")
 
     def test_invalid_email_too_short_boundary(self):
+        """
+        Tests an invalid email just below the minimum length.
+        """
         self.assertEqual(validate_email("a@b."), "Invalid Email")
 
     def test_invalid_email_too_long_boundary(self):
+        """
+        Tests an invalid email just above the maximum length.
+        """
         self.assertEqual(
             validate_email("a" * 25 + "@" + "b" * 24 + ".c"), "Invalid Email"
         )
 
     def test_invalid_email_missing_at_symbol(self):
+        """
+        Tests an invalid email missing the '@' symbol.
+        """
         self.assertEqual(validate_email("user.domain.com"), "Invalid Email")
 
     def test_invalid_email_missing_dot(self):
+        """
+        Tests an invalid email missing the '.' symbol.
+        """
         self.assertEqual(validate_email("user@domaincom"), "Invalid Email")
 
     def test_invalid_email_missing_both(self):
+        """
+        Tests an invalid email missing both '@' and '.' symbols.
+        """
         self.assertEqual(validate_email("userdomaincom"), "Invalid Email")
 
     def test_invalid_email_too_short_but_has_symbols(self):
+        """
+        Tests an invalid email that is too short but contains both '@' and '.'.
+        """
         self.assertEqual(validate_email("@.a"), "Invalid Email")
 
     def test_invalid_email_empty_string(self):
+        """
+        Tests an invalid email that is an empty string.
+        """
         self.assertEqual(validate_email(""), "Invalid Email")
 
 
@@ -500,28 +659,53 @@ class TestWhiteBoxCelsiusToFahrenheit(unittest.TestCase):
     """
     White-box tests for celsius_to_fahrenheit.
     """
+
     def test_conversion_within_range_zero(self):
+        """
+        Tests conversion of 0 degrees Celsius.
+        """
         self.assertAlmostEqual(celsius_to_fahrenheit(0), 32.0)
 
     def test_conversion_within_range_positive(self):
+        """
+        Tests conversion of a positive Celsius temperature.
+        """
         self.assertAlmostEqual(celsius_to_fahrenheit(10), 50.0)
 
     def test_conversion_within_range_negative(self):
+        """
+        Tests conversion of a negative Celsius temperature.
+        """
         self.assertAlmostEqual(celsius_to_fahrenheit(-10), 14.0)
 
     def test_conversion_lower_bound(self):
+        """
+        Tests conversion at the lower boundary of -100 degrees Celsius.
+        """
         self.assertAlmostEqual(celsius_to_fahrenheit(-100), -148.0)
 
     def test_conversion_upper_bound(self):
+        """
+        Tests conversion at the upper boundary of 100 degrees Celsius.
+        """
         self.assertAlmostEqual(celsius_to_fahrenheit(100), 212.0)
 
     def test_invalid_temperature_below_lower_bound(self):
+        """
+        Tests behavior with a temperature below the valid range.
+        """
         self.assertEqual(celsius_to_fahrenheit(-101), "Invalid Temperature")
 
     def test_invalid_temperature_above_upper_bound(self):
+        """
+        Tests behavior with a temperature above the valid range.
+        """
         self.assertEqual(celsius_to_fahrenheit(101), "Invalid Temperature")
 
     def test_invalid_temperature_far_outside(self):
+        """
+        Tests behavior with a temperature far outside the valid range.
+        """
         self.assertEqual(celsius_to_fahrenheit(500), "Invalid Temperature")
 
 
