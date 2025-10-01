@@ -301,6 +301,9 @@ class TestWhiteBoxCalculateOrderTotal(unittest.TestCase):
 
 
 class TestWhiteBoxCalculateShippingCost(unittest.TestCase):
+    """
+    White-box tests for calculate_items_shipping_cost.
+    """
     def test_standard_shipping_light_weight_boundary(self):
         items = [{"weight": 2}, {"weight": 3}]
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 10)
@@ -349,6 +352,9 @@ class TestWhiteBoxCalculateShippingCost(unittest.TestCase):
 
 
 class TestWhiteBoxValidateLogin(unittest.TestCase):
+    """
+    White-box tests for validate_login.
+    """
     def test_successful_login_minimum_boundary(self):
         self.assertEqual(validate_login("user1", "pass1234"), "Login Successful")
 
@@ -382,6 +388,9 @@ class TestWhiteBoxValidateLogin(unittest.TestCase):
 
 
 class TestWhiteBoxVerifyAge(unittest.TestCase):
+    """
+    White-box tests for verify_age.
+    """
     def test_eligible_minimum_boundary(self):
         self.assertEqual(verify_age(18), "Eligible")
 
@@ -405,6 +414,9 @@ class TestWhiteBoxVerifyAge(unittest.TestCase):
 
 
 class TestWhiteBoxCategorizeProduct(unittest.TestCase):
+    """
+    White-box tests for categorize_product.
+    """
     def test_category_a_minimum_boundary(self):
         self.assertEqual(categorize_product(10), "Category A")
 
@@ -446,6 +458,9 @@ class TestWhiteBoxCategorizeProduct(unittest.TestCase):
 
 
 class TestWhiteBoxValidateEmail(unittest.TestCase):
+    """
+    White-box tests for validate_email.
+    """
     def test_valid_email_minimum_boundary(self):
         self.assertEqual(validate_email("a@b.cd"), "Valid Email")
 
@@ -482,6 +497,9 @@ class TestWhiteBoxValidateEmail(unittest.TestCase):
 
 
 class TestWhiteBoxCelsiusToFahrenheit(unittest.TestCase):
+    """
+    White-box tests for celsius_to_fahrenheit.
+    """
     def test_conversion_within_range_zero(self):
         self.assertAlmostEqual(celsius_to_fahrenheit(0), 32.0)
 
