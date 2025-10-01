@@ -6,22 +6,22 @@ White-box unit testing examples.
 import unittest
 
 from white_box.class_exercises import (
+    TrafficLight,
     VendingMachine,
+    calculate_items_shipping_cost,
+    calculate_order_total,
     calculate_total_discount,
+    categorize_product,
+    celsius_to_fahrenheit,
     check_number_status,
     divide,
     get_grade,
     is_even,
     is_triangle,
-    validate_password,
-    TrafficLight,
-    calculate_order_total,
-    calculate_items_shipping_cost,
-    validate_login,
-    verify_age,
-    categorize_product,
     validate_email,
-    celsius_to_fahrenheit,
+    validate_login,
+    validate_password,
+    verify_age,
 )
 
 
@@ -221,6 +221,7 @@ class TestWhiteBoxCalculateTotalDiscount(unittest.TestCase):
         """Checks when total amount is greater than 500."""
         self.assertEqual(calculate_total_discount(700), 140.0)
 
+
 class TestWhiteBoxCalculateOrderTotal(unittest.TestCase):
     """
     White-box tests for calculate_order_total
@@ -295,11 +296,9 @@ class TestWhiteBoxCalculateOrderTotal(unittest.TestCase):
 
     def test_zero_quantity_or_price(self):
         """Checks behavior with zero quantity and zero price."""
-        items = [
-            {"quantity": 0, "price": 10},  
-            {"quantity": 5, "price": 0}    
-        ]
+        items = [{"quantity": 0, "price": 10}, {"quantity": 5, "price": 0}]
         self.assertEqual(calculate_order_total(items), 0.0)
+
 
 class TestWhiteBoxCalculateShippingCost(unittest.TestCase):
     def test_standard_shipping_light_weight_boundary(self):
@@ -329,7 +328,7 @@ class TestWhiteBoxCalculateShippingCost(unittest.TestCase):
     def test_express_shipping_medium_weight_lower_boundary(self):
         items = [{"weight": 5.01}]
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 30)
-        
+
     def test_express_shipping_medium_weight_upper_boundary(self):
         items = [{"weight": 10}]
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 30)
@@ -347,6 +346,7 @@ class TestWhiteBoxCalculateShippingCost(unittest.TestCase):
         items = []
         self.assertEqual(calculate_items_shipping_cost(items, "standard"), 10)
         self.assertEqual(calculate_items_shipping_cost(items, "express"), 20)
+
 
 class TestWhiteBoxValidateLogin(unittest.TestCase):
     def test_successful_login_minimum_boundary(self):
@@ -380,6 +380,7 @@ class TestWhiteBoxValidateLogin(unittest.TestCase):
         self.assertEqual(validate_login("abcd", "p" * 15), "Login Failed")
         self.assertEqual(validate_login("a" * 20, "p" * 7), "Login Failed")
 
+
 class TestWhiteBoxVerifyAge(unittest.TestCase):
     def test_eligible_minimum_boundary(self):
         self.assertEqual(verify_age(18), "Eligible")
@@ -401,6 +402,7 @@ class TestWhiteBoxVerifyAge(unittest.TestCase):
 
     def test_not_eligible_far_above(self):
         self.assertEqual(verify_age(100), "Not Eligible")
+
 
 class TestWhiteBoxCategorizeProduct(unittest.TestCase):
     def test_category_a_minimum_boundary(self):
@@ -442,12 +444,15 @@ class TestWhiteBoxCategorizeProduct(unittest.TestCase):
     def test_category_d_high_price(self):
         self.assertEqual(categorize_product(1000), "Category D")
 
+
 class TestWhiteBoxValidateEmail(unittest.TestCase):
     def test_valid_email_minimum_boundary(self):
         self.assertEqual(validate_email("a@b.cd"), "Valid Email")
 
     def test_valid_email_maximum_boundary(self):
-        self.assertEqual(validate_email("a" * 24 + "@" + "b" * 23 + ".c"), "Valid Email")
+        self.assertEqual(
+            validate_email("a" * 24 + "@" + "b" * 23 + ".c"), "Valid Email"
+        )
 
     def test_valid_email_mid_range(self):
         self.assertEqual(validate_email("test.user@domain.com"), "Valid Email")
@@ -456,7 +461,9 @@ class TestWhiteBoxValidateEmail(unittest.TestCase):
         self.assertEqual(validate_email("a@b."), "Invalid Email")
 
     def test_invalid_email_too_long_boundary(self):
-        self.assertEqual(validate_email("a" * 25 + "@" + "b" * 24 + ".c"), "Invalid Email")
+        self.assertEqual(
+            validate_email("a" * 25 + "@" + "b" * 24 + ".c"), "Invalid Email"
+        )
 
     def test_invalid_email_missing_at_symbol(self):
         self.assertEqual(validate_email("user.domain.com"), "Invalid Email")
@@ -472,7 +479,8 @@ class TestWhiteBoxValidateEmail(unittest.TestCase):
 
     def test_invalid_email_empty_string(self):
         self.assertEqual(validate_email(""), "Invalid Email")
-    
+
+
 class TestWhiteBoxCelsiusToFahrenheit(unittest.TestCase):
     def test_conversion_within_range_zero(self):
         self.assertAlmostEqual(celsius_to_fahrenheit(0), 32.0)
@@ -498,6 +506,7 @@ class TestWhiteBoxCelsiusToFahrenheit(unittest.TestCase):
     def test_invalid_temperature_far_outside(self):
         self.assertEqual(celsius_to_fahrenheit(500), "Invalid Temperature")
 
+
 class TestTrafficLight(unittest.TestCase):
     """
     Tests for the TrafficLight class.
@@ -513,7 +522,11 @@ class TestTrafficLight(unittest.TestCase):
         """
         Tests if the initial state is 'Red'.
         """
-        self.assertEqual(self.traffic_light.get_current_state(), "Red", "Initial state should be 'Red'")
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Red",
+            "Initial state should be 'Red'",
+        )
 
     def test_state_change_sequence(self):
         """
@@ -521,13 +534,25 @@ class TestTrafficLight(unittest.TestCase):
         """
         # Initial state is 'Red' from setUp
         self.traffic_light.change_state()
-        self.assertEqual(self.traffic_light.get_current_state(), "Green", "State should change from Red to Green")
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Green",
+            "State should change from Red to Green",
+        )
 
         self.traffic_light.change_state()
-        self.assertEqual(self.traffic_light.get_current_state(), "Yellow", "State should change from Green to Yellow")
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Yellow",
+            "State should change from Green to Yellow",
+        )
 
         self.traffic_light.change_state()
-        self.assertEqual(self.traffic_light.get_current_state(), "Red", "State should change from Yellow to Red")
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Red",
+            "State should change from Yellow to Red",
+        )
 
     def test_multiple_cycles(self):
         """
@@ -537,30 +562,49 @@ class TestTrafficLight(unittest.TestCase):
         self.traffic_light.change_state()  # Red -> Green
         self.traffic_light.change_state()  # Green -> Yellow
         self.traffic_light.change_state()  # Yellow -> Red
-        self.assertEqual(self.traffic_light.get_current_state(), "Red", "After one full cycle, state should be 'Red'")
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Red",
+            "After one full cycle, state should be 'Red'",
+        )
 
         # Cycle 2
         self.traffic_light.change_state()  # Red -> Green
         self.traffic_light.change_state()  # Green -> Yellow
         self.traffic_light.change_state()  # Yellow -> Red
-        self.assertEqual(self.traffic_light.get_current_state(), "Red", "After two full cycles, state should be 'Red'")
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Red",
+            "After two full cycles, state should be 'Red'",
+        )
 
     def test_get_current_state(self):
         """
         Tests that get_current_state() returns the correct value at all times.
         """
-        self.assertEqual(self.traffic_light.get_current_state(), "Red", "get_current_state should return 'Red'")
-        
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Red",
+            "get_current_state should return 'Red'",
+        )
+
         self.traffic_light.change_state()
-        self.assertEqual(self.traffic_light.get_current_state(), "Green", "get_current_state should return 'Green'")
-        
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Green",
+            "get_current_state should return 'Green'",
+        )
+
         self.traffic_light.change_state()
-        self.assertEqual(self.traffic_light.get_current_state(), "Yellow", "get_current_state should return 'Yellow'")
-        
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Yellow",
+            "get_current_state should return 'Yellow'",
+        )
+
         self.traffic_light.change_state()
-        self.assertEqual(self.traffic_light.get_current_state(), "Red", "get_current_state should return 'Red'")
-
-
-
-
-
+        self.assertEqual(
+            self.traffic_light.get_current_state(),
+            "Red",
+            "get_current_state should return 'Red'",
+        )
