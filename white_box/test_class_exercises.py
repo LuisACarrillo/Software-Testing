@@ -26,7 +26,6 @@ from white_box.class_exercises import (
     verify_age,
 )
 
-
 class TestWhiteBoxCheckNumberStatus(unittest.TestCase):
     """
     White-box tests for check_number_status.
@@ -693,7 +692,6 @@ class TestTrafficLight(unittest.TestCase):
             "Red",
             "get_current_state should return 'Red'",
         )
-
 
 # Samuel Pia
 class TestBankingSystem(unittest.TestCase):

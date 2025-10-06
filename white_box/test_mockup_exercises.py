@@ -37,7 +37,6 @@ class TestDataFetcher(unittest.TestCase):
         # Assert that requests.get was called with the correct URL
         mock_get.assert_called_once_with("https://api.example.com/data", timeout=10)
 
-
 # ---
 class TestFileOperations(unittest.TestCase):
     """
@@ -64,7 +63,6 @@ class TestFileOperations(unittest.TestCase):
 
         # Assert that the file was opened with the correct arguments
         mock_file.assert_called_once_with(filename, encoding="utf-8")
-
 
 # ---
 class TestCommandExecutor(unittest.TestCase):
@@ -95,7 +93,6 @@ class TestCommandExecutor(unittest.TestCase):
         mock_run.assert_called_once_with(
             command, capture_output=True, check=False, text=True
         )
-
 
 # ---
 class TestTimeBasedActions(unittest.TestCase):
