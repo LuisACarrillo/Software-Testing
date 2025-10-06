@@ -26,7 +26,6 @@ from white_box.class_exercises import (
     verify_age,
 )
 
-
 class TestWhiteBoxCheckNumberStatus(unittest.TestCase):
     """
     White-box tests for check_number_status.
@@ -694,7 +693,6 @@ class TestTrafficLight(unittest.TestCase):
             "get_current_state should return 'Red'",
         )
 
-
 # Samuel Pia
 class TestBankingSystem(unittest.TestCase):
     """
@@ -942,13 +940,15 @@ class TestWhiteBoxShoppingCart(unittest.TestCase):
         self.cart.add_product(self.product_a, 2)
         self.cart.add_product(self.product_b, 1)
 
-        expected_msg = """\
-        2 x Shirt - $100.0
-        1 x Pants - $80.0"""
+        expected_lines = ["2 x Shirt - $100.0", "1 x Pants - $80.0"]
 
         captured = io.StringIO()
         sys.stdout = captured
         self.cart.view_cart()
         sys.stdout = sys.__stdout__
 
-        self.assertEqual(captured.getvalue().strip(), expected_msg)
+        output_lines = [
+            line.strip() for line in captured.getvalue().strip().splitlines()
+        ]
+        self.assertEqual(output_lines, expected_lines)
+
