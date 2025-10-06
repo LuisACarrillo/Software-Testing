@@ -4,13 +4,10 @@ on:
   pull_request:
     branches: [main]
 
-<<<<<<< HEAD
 permissions:
   pull-requests: write
   issues: write
 
-=======
->>>>>>> e9d35cf (feat: add hello world scripts in Python and JavaScript with linter workflow)
 jobs:
   danger:
     runs-on: ubuntu-latest

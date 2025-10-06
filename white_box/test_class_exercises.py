@@ -5,17 +5,10 @@ White-box unit testing examples.
 """
 import io
 import sys
-import io
-import sys
 import unittest
-from io import StringIO
 from io import StringIO
 
 from white_box.class_exercises import (
-    BankAccount,
-    BankingSystem,
-    Product,
-    ShoppingCart,
     BankAccount,
     BankingSystem,
     Product,
@@ -32,6 +25,7 @@ from white_box.class_exercises import (
     validate_password,
     verify_age,
 )
+
 
 class TestWhiteBoxCheckNumberStatus(unittest.TestCase):
     """
@@ -700,6 +694,7 @@ class TestTrafficLight(unittest.TestCase):
             "get_current_state should return 'Red'",
         )
 
+
 # Samuel Pia
 class TestBankingSystem(unittest.TestCase):
     """
@@ -958,4 +953,3 @@ class TestWhiteBoxShoppingCart(unittest.TestCase):
             line.strip() for line in captured.getvalue().strip().splitlines()
         ]
         self.assertEqual(output_lines, expected_lines)
-
