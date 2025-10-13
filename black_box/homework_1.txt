@@ -10,7 +10,6 @@ Equivalence Partitioning
    5        1234abcd5678         Rechazado
 
 
-
 2. Function that validates dates.
    - Valid years: Between 1900 and 2100.
    - Valid months: Between 1 and 12.

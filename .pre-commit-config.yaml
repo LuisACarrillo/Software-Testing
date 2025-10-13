@@ -1,54 +1,94 @@
+default_stages: [pre-commit]
+exclude: |
+  (^node_modules/)|
+  (^venv/)|
+  (^\.venv/)|
+  (^env/)|
+  (^\.git/)|
+  (^__pycache__/)|
+  (^build/)|
+  (^dist/)
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
       - id: check-added-large-files
+        exclude: ^node_modules/
       - id: check-ast
+        exclude: ^node_modules/
       - id: check-case-conflict
+        exclude: ^node_modules/
       - id: check-executables-have-shebangs
+        exclude: ^node_modules/
       - id: check-json
+        exclude: ^node_modules/
       - id: check-merge-conflict
+        exclude: ^node_modules/
       - id: check-shebang-scripts-are-executable
+        exclude: ^node_modules/
       - id: check-xml
+        exclude: ^node_modules/
       - id: check-yaml
+        exclude: ^node_modules/
       - id: detect-private-key
+        exclude: ^node_modules/
       - id: end-of-file-fixer
+        exclude: ^node_modules/
       - id: file-contents-sorter
+        exclude: ^node_modules/
       - id: fix-byte-order-marker
+        exclude: ^node_modules/
       - id: fix-encoding-pragma
+        exclude: ^node_modules/
       - id: mixed-line-ending
+        exclude: ^node_modules/
       - id: name-tests-test
         args: [--pytest-test-first]
+        exclude: ^node_modules/
       - id: pretty-format-json
         args: [--autofix, --no-ensure-ascii, --indent, "2"]
         files: ^package\.json$
+        exclude: ^node_modules/
       - id: requirements-txt-fixer
+        exclude: ^node_modules/
       - id: sort-simple-yaml
+        exclude: ^node_modules/
       - id: trailing-whitespace
+        exclude: ^node_modules/
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
     hooks:
       - id: prettier
+        files: \.(js|jsx|ts|tsx|json|css|html|md|yml|yaml)$
+        exclude: ^node_modules/
 
   - repo: https://github.com/psf/black
     rev: 24.1.1
     hooks:
       - id: black
+        exclude: ^node_modules/
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
     hooks:
       - id: isort
         args: [--profile=black]
+        exclude: ^node_modules/
 
   - repo: https://github.com/PyCQA/pylint
     rev: v3.0.3
     hooks:
       - id: pylint
+        exclude: ^node_modules/
+        additional_dependencies:
+          - requests
 
   - repo: https://github.com/sirosen/check-jsonschema
     rev: 0.28.0
     hooks:
       - id: check-github-actions
+        exclude: ^node_modules/
       - id: check-github-workflows
+        exclude: ^node_modules/
