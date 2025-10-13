@@ -4,13 +4,13 @@
 Mock up testing examples.
 """
 import unittest
-from unittest.mock import patch, mock_open, MagicMock
+from unittest.mock import MagicMock, mock_open, patch
 
 from white_box.mockup_exercises import (
-    fetch_data_from_api,
-    read_data_from_file,
     execute_command,
+    fetch_data_from_api,
     perform_action_based_on_time,
+    read_data_from_file,
 )
 
 
@@ -26,7 +26,7 @@ class TestDataFetcher(unittest.TestCase):
         """
         # Set up the mock response
         mock_get.return_value.json.return_value = {"key": "value"}
-        mock_get.return_value.status_code = 200 
+        mock_get.return_value.status_code = 200
 
         # Call the function under test
         result = fetch_data_from_api("https://api.example.com/data")
@@ -43,7 +43,11 @@ class TestFileOperations(unittest.TestCase):
     File operations unittest class.
     """
 
-    @patch("builtins.open", new_callable=mock_open, read_data="Contenido del archivo de prueba")
+    @patch(
+        "builtins.open",
+        new_callable=mock_open,
+        read_data="Contenido del archivo de prueba",
+    )
     def test_read_data_from_file_success(self, mock_file):
         """
         Success case for read_data_from_file.
